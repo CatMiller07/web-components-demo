@@ -1,0 +1,53 @@
+
+
+  <template>
+	 <style>
+		 .chat-thumbnail{
+			  width: 150px;
+			 height: 80px;
+			 padding: 3px;
+			 background-color: rgb(235,235,255);
+		 }
+          
+		 h5{
+			 font-size: 1.60em;
+		 }
+		
+		 .chat-thumbnail h5, .chat-thumbnail h6{
+			 margin: 0;
+			 margin-top: 5px;
+		 }
+    </style>  
+	  
+    <div class="chat-thumbnail">
+	    <h5> </h5>  
+		<h6> </h6>
+	</div>	
+  </template>
+
+<script>
+ (function() {
+	
+	 var importDoc = document.currentScript.ownerDocument;
+	 var ChatThumbnail = Object.create(HTMLElement.prototype);
+	 
+	  ChatThumbnail.createdCallback = function(){
+	      var template = importDoc.querySelector("template");
+		  var templateClone = document.importNode(template.content, true);
+		  	
+		  //templateClone.querySelector.("h5").innerHTML = this.getAttribute("uname");
+		  templateClone.querySelector("h5").innerHTML = this.getAttribute("uname");
+		  templateClone.querySelector("h6").innerHTML = this.getAttribute("sts");
+		  
+		   var root = this.createShadowRoot();
+	       root.appendChild(templateClone);
+	  }
+   
+	  
+	  document.registerElement('chat-thumbnail',{prototype: ChatThumbnail});
+	 
+			 
+	 
+ }) ();
+
+</script>
